@@ -1,0 +1,66 @@
+﻿@model IEnumerable<RejestrKontaktowv2.Models.Osoba>
+
+@{
+    ViewData["Title"] = "Index";
+    var osoby = ViewBag.Filtrowani as List<RejestrKontaktowv2.Models.Osoba>;     //1. to sie nie uzupelnia
+    var szukanyTekst = ViewBag.SzukanyTekst as string;                                  //to tez
+}
+
+<h1>RejestrKontaktow</h1>
+
+    <form method="get" asp-action="Szukaj">
+        
+        <input type="text" name="szukanyTekst" value="@szukanyTekst" placeholder="Wpisz imię, nazwisko lub email" class="form-control" />
+        <button type="submit" class="btn btn-primary">Szukaj</button>
+    </form>
+    
+    <p>
+        <a asp-action="Dodaj">Dodaj</a>
+    </p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.imie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nazwisko)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nr_tel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.adres)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (osoby != null && osoby.Any())
+        {
+            foreach (var item in osoby)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.imie)</td>
+                    <td>@Html.DisplayFor(modelItem => item.nazwisko)</td>
+                    <td>@Html.DisplayFor(modelItem => item.email)</td>
+                    <td>@Html.DisplayFor(modelItem => item.nr_tel)</td>
+                    <td>@Html.DisplayFor(modelItem => item.adres)</td>
+                    <td>
+                        <a asp-action="Edytuj" asp-route-id="@item.id">Edytuj</a> |
+                        <a asp-action="Usun" asp-route-id="@item.id">Usun</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6">Brak wyników dla wyszukiwania: "@szukanyTekst"</td>
+            </tr>
+        }
+    </tbody>
+</table>

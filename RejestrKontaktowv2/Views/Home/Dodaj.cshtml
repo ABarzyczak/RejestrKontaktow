@@ -1,0 +1,53 @@
+﻿@model RejestrKontaktowv2.Models.Osoba
+
+@{
+    ViewData["Title"] = "Dodaj";
+}
+
+<h1>Dodaj</h1>
+
+<h4>Osoba</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Dodaj">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="imie" class="control-label"></label>
+                <input asp-for="imie" class="form-control" />
+                <span asp-validation-for="imie" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nazwisko" class="control-label"></label>
+                <input asp-for="nazwisko" class="form-control" />
+                <span asp-validation-for="nazwisko" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="email" class="control-label"></label>
+                <input asp-for="email" class="form-control" />
+                <span asp-validation-for="email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nr_tel" class="control-label"></label>
+                <input asp-for="nr_tel" class="form-control" />
+                <span asp-validation-for="nr_tel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="adres" class="control-label"></label>
+                <input asp-for="adres" class="form-control" />
+                <span asp-validation-for="adres" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
